@@ -81,3 +81,6 @@ CMD ["/install.sh"]
 
 EXPOSE 10002 10004 10005
 CMD ["/usr/bin/openscada_start", "--noX11"]
+
+#How to build.
+#docker bulid -t oscada-arm64v8:bionic .
