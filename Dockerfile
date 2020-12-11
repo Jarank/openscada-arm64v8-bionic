@@ -1,8 +1,6 @@
 FROM ubuntu:bionic
-
 MAINTAINER Jaran Keowma <jaranb@gmail.com>
 LABEL maintainer="Jaran Keowma <jaranb@gmail.com>"
-
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive \
        apt-get install -q -y --no-install-recommends apt-utils \
@@ -71,8 +69,6 @@ RUN apt-get update \
         eatmydata
 
 
-
-COPY install.sh /
 ADD deb /tmp/deb
 WORKDIR /tmp/deb
 RUN dpkg -i  openscada-server_1+r2676-1_all.deb openscada_1+r2676-1_arm64.deb \
@@ -80,7 +76,8 @@ openscada-dbg_1+r2676-1_arm64.deb openscada-dev_1+r2676-1_arm64.deb \
 openscada-libdb-main_1+r2676-1_all.deb \
 openscada-libdb-vca_1+r2676-1_all.deb openscada-model-aglks_1+r2676-1_all.deb
 RUN apt-get -y install -f
-CMD ["/install.sh"]
+#COPY install.sh /
+#CMD ["/install.sh"]
 
 EXPOSE 10002 10004 10005
 CMD ["/usr/bin/openscada_start", "--noX11"]
